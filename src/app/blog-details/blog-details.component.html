@@ -1,0 +1,20 @@
+<div class="container">
+    <h1>{{blogData.title}}</h1>
+
+    <h4 class="">{{blogData.description}}</h4>
+    <img style="width: 280px;" src="{{blogData.image}}">
+    <div>
+        {{blogData.body}}
+    </div>
+    
+    
+    <div class="edit btn btn-primary" routerLink="/update-blog/{{blogData.id}}">Edit</div>
+    <div class="delete btn btn-danger" (click)="deleteBlog(blogData.id)">Delete</div>
+
+    <div class="container">
+        <app-comments></app-comments>
+        <app-comment-form></app-comment-form>
+    </div>
+
+</div>
+

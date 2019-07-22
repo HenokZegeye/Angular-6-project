@@ -1,0 +1,20 @@
+<div class="container custom-container-2">
+  <!-- Show it when there is no blog -->
+  <div>
+    <button class="btn btn-info" routerLink="/create-blog" style="float: right">Add new Post</button>
+  </div>
+  <div class="no-data text-center" *ngIf="Blog.length == 0">
+    <p>There is no blog added yet!</p>
+    <button class="btn btn-outline-primary" routerLink="/create-blog">Add Post</button>
+  </div>
+  <!-- Blogs list table, it hides when there is no blog -->
+  <div *ngIf="Blog.length !== 0">
+    <div  *ngFor="let blog of Blog" class="container">
+      <h1>{{blog.title}}</h1>
+      <h4 style="font-style: italic; font-size: 20px;">{{blog.description}}</h4>
+      <div>
+          <img style="width: 220px;" src="{{blog.image}}">
+      </div>
+      <div style="width: 10%; margin-top: 10px; margin-left: 20px;" class="btn btn-info" routerLink="/blog-details/{{blog.id}}">More...</div>
+    </div>
+  </div>
