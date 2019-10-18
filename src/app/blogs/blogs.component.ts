@@ -17,8 +17,12 @@ export class BlogsComponent implements OnInit {
   }
 
   loadBlogs(){
-    return this.restapiservice.getBlogs().subscribe((data:{})=>{
+    return this.restapiservice.getBlogs().subscribe(data=>{
       this.Blog = data;
     })
   }
+
+  
+ 
+ 
 }

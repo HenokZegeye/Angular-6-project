@@ -7,8 +7,7 @@
         {{blogData.body}}
     </div>
     
-    
-    <div class="edit btn btn-primary" routerLink="/update-blog/{{blogData.id}}">Edit</div>
+    <a class="edit btn btn-primary" [routerLink]="['/update-blog',blogData.id]">Edit</a>
     <div class="delete btn btn-danger" (click)="deleteBlog(blogData.id)">Delete</div>
 
     <div class="container">

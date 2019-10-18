@@ -134,5 +134,8 @@
       }
     }
   },
-  "defaultProject": "demo-blog-v2"
+  "defaultProject": "demo-blog-v2",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }

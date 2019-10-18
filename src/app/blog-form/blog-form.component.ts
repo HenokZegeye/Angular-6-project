@@ -14,6 +14,7 @@ export class BlogFormComponent implements OnInit {
   pageTitle: string;
   
   blogForm : FormGroup;
+  id = this.actRoute.snapshot.params['id'];
   constructor(
     private restapiservice : RestApiService,
     private actRoute: ActivatedRoute,
@@ -23,10 +24,10 @@ export class BlogFormComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    const id = this.actRoute.snapshot.params['id'];
-    if (id) {
+    
+    if (this.id) {
       this.pageTitle = "Edit Blog";
-      this.restapiservice.getBlog(+id).subscribe(
+      this.restapiservice.getBlog(+this.id).subscribe(
         res => {
           this.blogForm.patchValue({
             title: res.title,
@@ -40,7 +41,7 @@ export class BlogFormComponent implements OnInit {
       )
       
     } else{
-      this.pageTitle = " Create Blog";
+      this.pageTitle = "Create Blog";
     }
 
     this.blogForm = this.fb.group({

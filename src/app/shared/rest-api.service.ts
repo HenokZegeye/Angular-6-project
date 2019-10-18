@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Blog } from '../shared/blog.model';
 import { Comment } from '../shared/comment.model';
 import { Observable, throwError} from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
+import { retry, catchError, map } from 'rxjs/operators';
 
 
 
@@ -24,7 +24,7 @@ export class RestApiService {
   }
 
   getBlogs(): Observable<Blog>{
-    return this.http.get<Blog>(this.apiUrl+'/blogs.json', this.httpOptions).pipe(
+    return this.http.get<Blog>(this.apiUrl+'/blogs', this.httpOptions).pipe(
       retry(1),
       catchError(err => {
         console.log(err.message);
@@ -34,7 +34,7 @@ export class RestApiService {
     )
   }
   getBlog(id): Observable<Blog>{
-    return this.http.get<Blog>(this.apiUrl+'/blogs/'+id+'.json',this.httpOptions).pipe(
+    return this.http.get<Blog>(this.apiUrl+'/blogs/'+id,this.httpOptions).pipe(
       retry(1),
       catchError(err => {
         console.log(err.message);
@@ -44,7 +44,7 @@ export class RestApiService {
     )
   }
   createBlog(blog): Observable<Blog>{
-    return this.http.post<Blog>(this.apiUrl+'/blogs.json', JSON.stringify(blog), this.httpOptions).pipe(
+    return this.http.post<Blog>(this.apiUrl+'/blogs', JSON.stringify(blog), this.httpOptions).pipe(
       retry(1),
       catchError(err => {
         console.log(err.message);
@@ -54,7 +54,7 @@ export class RestApiService {
     )
   }
   updateBlog(id, blog): Observable<Blog> {
-    return this.http.put<Blog>(this.apiUrl+'/blogs/'+id+'.json', JSON.stringify(blog), this.httpOptions).pipe(
+    return this.http.put<Blog>(this.apiUrl+'/blogs/'+id, JSON.stringify(blog), this.httpOptions).pipe(
       retry(1),
       catchError(err => {
         console.log(err.message);
@@ -64,7 +64,7 @@ export class RestApiService {
     )
   }
   deleteBlog(id){
-    return this.http.delete<Blog>(this.apiUrl + '/blogs/'+id+'.json', this.httpOptions).pipe(
+    return this.http.delete<Blog>(this.apiUrl + '/blogs/'+id, this.httpOptions).pipe(
       retry(1),
       catchError(err => {
         console.log(err.message);
